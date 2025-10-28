@@ -7,10 +7,10 @@ const Contact = () => {
   const [refMap, isVisibleMap] = useIntersectionObserver({ threshold: 0.2 });
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* Fondos decorativos sutiles */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-amber-100/40 rounded-full blur-3xl animate-float"></div>
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-gray-200/40 rounded-full blur-3xl animate-float-delayed"></div>
+    <section className="py-24 bg-white relative overflow-hidden">
+      {/* Fondos decorativos */}
+      <div className="absolute top-16 left-10 w-72 h-72 bg-amber-100/40 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-16 right-10 w-72 h-72 bg-gray-200/40 rounded-full blur-3xl animate-float-delayed"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Título */}
@@ -20,18 +20,18 @@ const Contact = () => {
             isVisibleTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4">
             Contáctanos
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto">
-            ¿Tienes alguna pregunta? Estamos aquí para ayudarte.
+            ¿Tienes preguntas o dudas? Nuestro equipo está listo para ayudarte en lo que necesites.
           </p>
         </div>
 
-        {/* Mapa con card */}
+        {/* Mapa */}
         <div
           ref={refMap}
-          className={`relative w-full h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-lg transition-all duration-700 ${
+          className={`relative w-full h-96 lg:h-[450px] rounded-3xl overflow-hidden shadow-xl transition-all duration-700 ${
             isVisibleMap ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -44,35 +44,33 @@ const Contact = () => {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
 
-          {/* Card flotante */}
-          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-xl w-80 flex flex-col gap-4 border border-gray-200">
-            <div className="flex items-center gap-3">
-              <MapPin className="text-amber-600" size={24} />
-              <p className="text-gray-800 font-semibold">
-                Av. Principal 1234, Buenos Aires
-              </p>
+          {/* Card flotante de contacto */}
+          <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-2xl w-80 flex flex-col gap-5 border border-gray-200">
+            <div className="flex items-center gap-4">
+              <MapPin className="text-amber-600" size={26} />
+              <p className="text-gray-800 font-medium">Av. Principal 1234, Buenos Aires</p>
             </div>
-            <div className="flex items-center gap-3">
-              <Phone className="text-amber-600" size={24} />
-              <p className="text-gray-800 font-semibold">+54 11 1234-5678</p>
+            <div className="flex items-center gap-4">
+              <Phone className="text-amber-600" size={26} />
+              <p className="text-gray-800 font-medium">+54 11 1234-5678</p>
             </div>
-            <div className="flex items-center gap-3">
-              <Mail className="text-amber-600" size={24} />
-              <p className="text-gray-800 font-semibold">contacto@MiTienda.com</p>
+            <div className="flex items-center gap-4">
+              <Mail className="text-amber-600" size={26} />
+              <p className="text-gray-800 font-medium">contacto@MiTienda.com</p>
             </div>
           </div>
         </div>
 
-        {/* Horarios */}
-        <div className="mt-10 p-6 bg-gray-100 rounded-2xl text-gray-800 shadow-md text-center max-w-md mx-auto">
-          <h3 className="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
-            <Sparkles className="text-amber-600" size={24} />
+        {/* Horarios de atención */}
+        <div className="mt-12 p-8 bg-gray-50 rounded-3xl shadow-lg text-gray-800 text-center max-w-md mx-auto transition-transform hover:-translate-y-2 duration-300">
+          <h3 className="text-2xl font-bold mb-4 flex items-center justify-center gap-3">
+            <Sparkles className="text-amber-600" size={26} />
             Horarios de Atención
           </h3>
-          <div className="space-y-1 text-lg">
-            <p>Lunes a Viernes: 9:00 - 20:00</p>
-            <p>Sábados: 10:00 - 18:00</p>
-            <p>Domingos: Cerrado</p>
+          <div className="space-y-2 text-lg">
+            <p><span className="font-semibold">Lunes a Viernes:</span> 9:00 - 20:00</p>
+            <p><span className="font-semibold">Sábados:</span> 10:00 - 18:00</p>
+            <p><span className="font-semibold">Domingos:</span> Cerrado</p>
           </div>
         </div>
       </div>

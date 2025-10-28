@@ -41,7 +41,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4 text-amber-400">Categorías</h3>
             <ul className="space-y-3 text-stone-400">
-              {["Hombre", "Mujer", "Niños", "Accesorios"].map((item) => (
+              {["Hombre", "Mujer", "Niños"].map((item) => (
                 <li key={item}>
                   <button className="hover:text-amber-500 hover:translate-x-2 transition-all duration-300 inline-block">
                     {item}
