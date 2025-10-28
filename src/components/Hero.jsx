@@ -33,7 +33,9 @@ const Hero = ({ scrollToProducts }) => {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-200 animate-slide-in-left leading-relaxed">
-              Moda masculina y femenina con estilo y confort. Encuentra tu look ideal en nuestra nueva colección.
+              Moda masculina y femenina con estilo y confort. 
+              <br />
+              Encuentra tu look ideal en nuestra nueva colección.
             </p>
 
             <div className="flex flex-wrap gap-4 animate-slide-in-left">
