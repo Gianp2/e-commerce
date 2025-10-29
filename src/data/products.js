@@ -6,6 +6,9 @@ export const products = [
     price: 89.99,
     originalPrice: 129.99,
     discount: 30,
+    isNew: true,
+    isBestseller: true,
+    isOnSale: true,
     image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&h=600&fit=crop'
   },
   {
@@ -13,6 +16,9 @@ export const products = [
     name: 'Blusa Elegante',
     category: 'Blusas',
     price: 45.99,
+    isNew: true,
+    isBestseller: false,
+    isOnSale: false,
     image: 'https://images.unsplash.com/photo-1564257577236-17fbb1107a8c?w=500&h=600&fit=crop'
   },
   {
@@ -22,6 +28,9 @@ export const products = [
     price: 65.99,
     originalPrice: 85.99,
     discount: 25,
+    isNew: false,
+    isBestseller: true,
+    isOnSale: true,
     image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&h=600&fit=crop'
   },
   {
@@ -29,6 +38,9 @@ export const products = [
     name: 'Chaqueta Denim',
     category: 'Chaquetas',
     price: 95.99,
+    isNew: false,
+    isBestseller: false,
+    isOnSale: false,
     image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&h=600&fit=crop'
   },
   {
@@ -36,6 +48,9 @@ export const products = [
     name: 'Falda Moderna',
     category: 'Faldas',
     price: 55.99,
+    isNew: true,
+    isBestseller: false,
+    isOnSale: false,
     image: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=500&h=600&fit=crop'
   },
   {
@@ -45,6 +60,9 @@ export const products = [
     price: 75.99,
     originalPrice: 99.99,
     discount: 20,
+    isNew: false,
+    isBestseller: true,
+    isOnSale: true,
     image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=600&fit=crop'
   },
   {
@@ -52,6 +70,9 @@ export const products = [
     name: 'Vestido Nocturno',
     category: 'Vestidos',
     price: 120.99,
+    isNew: false,
+    isBestseller: true,
+    isOnSale: false,
     image: 'https://images.unsplash.com/photo-1542068829-1115c86d8a14?w=500&h=600&fit=crop'
   },
   {
@@ -61,6 +82,9 @@ export const products = [
     price: 150.99,
     originalPrice: 179.99,
     discount: 15,
+    isNew: true,
+    isBestseller: true,
+    isOnSale: true,
     image: 'https://images.unsplash.com/photo-1618354690507-9b7e0d3ff9b5?w=500&h=600&fit=crop'
   },
   {
@@ -68,6 +92,9 @@ export const products = [
     name: 'Blusa Casual',
     category: 'Blusas',
     price: 39.99,
+    isNew: false,
+    isBestseller: false,
+    isOnSale: true,
     image: 'https://images.unsplash.com/photo-1602810319635-2ab3570a44f1?w=500&h=600&fit=crop'
   }
 ];

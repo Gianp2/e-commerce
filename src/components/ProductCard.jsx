@@ -1,5 +1,4 @@
 import React from 'react';
-import { Star } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const ProductCard = ({ product, index }) => {
@@ -8,7 +7,7 @@ const ProductCard = ({ product, index }) => {
   return (
     <div
       ref={ref}
-      className={`bg-[#f9f9f9] rounded-3xl overflow-hidden shadow-md hover:shadow-xl transform transition-all duration-500 group border border-gray-200 ${
+      className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transform transition-all duration-500 group border border-gray-200 ${
         isVisible ? 'animate-scale-in' : 'opacity-0'
       }`}
       style={{ animationDelay: `${index * 0.1}s` }}
@@ -18,7 +17,7 @@ const ProductCard = ({ product, index }) => {
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700 rounded-t-3xl"
+          className="w-full h-72 md:h-80 object-cover group-hover:scale-105 transition-transform duration-700 rounded-t-3xl"
         />
         {product.discount && (
           <div className="absolute top-4 left-4 bg-gradient-to-r from-amber-400 to-yellow-300 text-gray-900 px-4 py-1.5 rounded-full text-xs font-semibold shadow-sm backdrop-blur-sm">
@@ -28,36 +27,26 @@ const ProductCard = ({ product, index }) => {
       </div>
 
       {/* Contenido */}
-      <div className="p-6">
-        {/* Estrellas */}
-        <div className="flex items-center gap-1 mb-3">
-          {[...Array(5)].map((_, i) => (
-            <Star
-              key={i}
-              size={16}
-              className="fill-amber-400 text-amber-400 drop-shadow-sm"
-            />
-          ))}
-          <span className="text-sm text-gray-500 ml-2 font-medium">(128)</span>
+      <div className="p-5 flex flex-col justify-between h-44 md:h-48">
+        {/* Título y categoría */}
+        <div>
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1 tracking-tight truncate">
+            {product.name}
+          </h3>
+
+          <p className="text-xs md:text-sm text-gray-500 uppercase tracking-wide">
+            {product.category}
+          </p>
         </div>
 
-        {/* Título y categoría */}
-        <h3 className="text-xl font-bold text-gray-900 mb-1 tracking-tight">
-          {product.name}
-        </h3>
-
-        <p className="text-sm text-gray-500 mb-4 font-medium uppercase tracking-wide">
-          {product.category}
-        </p>
-
         {/* Precios */}
-        <div className="flex items-center gap-2">
+        <div className="mt-3 flex items-center gap-2">
           {product.originalPrice && (
-            <span className="text-gray-400 line-through text-sm">
+            <span className="text-gray-400 line-through text-sm md:text-base">
               ${product.originalPrice}
             </span>
           )}
-          <span className="text-3xl font-bold text-amber-600">
+          <span className="text-xl md:text-2xl font-bold text-amber-600">
             ${product.price}
           </span>
         </div>
