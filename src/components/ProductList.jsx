@@ -19,7 +19,6 @@ const ProductList = () => {
   const collections = ['all', 'novedades', 'nuevos', 'mas-vendidos', 'ofertas'];
   const containerRef = useRef(null);
 
-  // Filtrado y ordenamiento
   const filteredProducts = products
     .filter(p => (category === 'all' ? true : p.category === category))
     .filter(p => (gender === 'all' ? true : p.gender === gender))
@@ -48,7 +47,6 @@ const ProductList = () => {
   const startIndex = (currentPage - 1) * productsPerPage;
   const currentProducts = filteredProducts.slice(startIndex, startIndex + productsPerPage);
 
-  // Scroll suave cuando cambia la página
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -62,16 +60,16 @@ const ProductList = () => {
   };
 
   return (
-    <section id="productos" className="relative bg-gradient-to-b from-amber-100 via-white to-white py-20">
+    <section className="relative bg-gradient-to-b from-amber-100 via-white to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20">
       <div className="container mx-auto px-4" ref={containerRef}>
         {/* Título */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-amber-200 px-6 py-2 rounded-full mb-4 shadow-sm">
-            <Sparkles className="text-amber-400" size={20} />
-            <span className="text-sm font-bold text-stone-800">Colección Exclusiva</span>
+          <div className="inline-flex items-center gap-2 bg-amber-200 dark:bg-gray-800 px-6 py-2 rounded-full mb-4 shadow-sm">
+            <Sparkles className="text-amber-400 dark:text-amber-300" size={20} />
+            <span className="text-sm font-bold text-stone-800 dark:text-gray-200">Colección Exclusiva</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-stone-900 mb-4">Nuestra Colección</h2>
-          <p className="text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
+          <h2 className="text-5xl md:text-6xl font-bold text-stone-900 dark:text-white mb-4">Nuestra Colección</h2>
+          <p className="text-xl md:text-2xl text-stone-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Moda masculina y femenina con estilo. Encuentra tu look ideal entre nuestras selecciones exclusivas.
           </p>
         </div>
@@ -80,7 +78,7 @@ const ProductList = () => {
         <div className="flex justify-center mb-6 md:hidden">
           <button
             onClick={() => setIsFilterOpen(true)}
-            className="flex items-center gap-2 bg-amber-400 text-gray-900 px-5 py-2.5 rounded-full font-semibold shadow hover:bg-amber-500 transition-all duration-300"
+            className="flex items-center gap-2 bg-amber-400 dark:bg-amber-600 text-gray-900 dark:text-gray-900 px-5 py-2.5 rounded-full font-semibold shadow hover:bg-amber-500 dark:hover:bg-amber-700 transition-all duration-300"
           >
             <Filter size={20} /> Filtros
           </button>
@@ -90,28 +88,27 @@ const ProductList = () => {
           {/* Botón plegar/abrir sidebar desktop */}
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="hidden md:flex absolute -left-5 top-2 z-10 items-center justify-center bg-amber-400 text-gray-900 p-2 rounded-full shadow hover:bg-amber-500 transition-all duration-300"
+            className="hidden md:flex absolute -left-5 top-2 z-10 items-center justify-center bg-amber-400 dark:bg-amber-600 text-gray-900 dark:text-gray-900 p-2 rounded-full shadow hover:bg-amber-500 dark:hover:bg-amber-700 transition-all duration-300"
           >
             {isSidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
           </button>
 
           {/* Sidebar filtros desktop */}
           <aside
-            className={`hidden md:flex flex-col bg-white rounded-2xl p-6 shadow-md space-y-6 
-                        max-h-[calc(100vh-200px)] overflow-y-auto sticky top-24 transition-all duration-300 
+            className={`hidden md:flex flex-col rounded-2xl p-6 shadow-md space-y-6 max-h-[calc(100vh-200px)] overflow-y-auto sticky top-24 transition-all duration-300 bg-white dark:bg-gray-800
                         ${isSidebarOpen ? 'w-72 opacity-100 mr-4' : 'w-0 opacity-0 p-0 mr-0 overflow-hidden'}`}
           >
             {isSidebarOpen && (
               <>
-                <h3 className="text-lg font-bold text-stone-800 mb-2">Filtros</h3>
+                <h3 className="text-lg font-bold text-stone-800 dark:text-gray-200 mb-2">Filtros</h3>
 
                 {/* Colección */}
                 <div>
-                  <label className="block text-stone-700 font-semibold mb-1">Colección</label>
+                  <label className="block text-stone-700 dark:text-gray-300 font-semibold mb-1">Colección</label>
                   <select
                     value={collection}
                     onChange={e => { setCollection(e.target.value); setCurrentPage(1); }}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    className="w-full px-3 py-2 border border-stone-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-gray-200"
                   >
                     {collections.map(col => (
                       <option key={col} value={col}>{col.replace('-', ' ').toUpperCase()}</option>
@@ -121,11 +118,11 @@ const ProductList = () => {
 
                 {/* Categoría */}
                 <div>
-                  <label className="block text-stone-700 font-semibold mb-1">Categoría</label>
+                  <label className="block text-stone-700 dark:text-gray-300 font-semibold mb-1">Categoría</label>
                   <select
                     value={category}
                     onChange={e => { setCategory(e.target.value); setCurrentPage(1); }}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    className="w-full px-3 py-2 border border-stone-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-gray-200"
                   >
                     {categories.map(cat => (
                       <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
@@ -135,11 +132,11 @@ const ProductList = () => {
 
                 {/* Género */}
                 <div>
-                  <label className="block text-stone-700 font-semibold mb-1">Género</label>
+                  <label className="block text-stone-700 dark:text-gray-300 font-semibold mb-1">Género</label>
                   <select
                     value={gender}
                     onChange={e => { setGender(e.target.value); setCurrentPage(1); }}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    className="w-full px-3 py-2 border border-stone-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-gray-200"
                   >
                     <option value="all">Todos</option>
                     <option value="men">Hombre</option>
@@ -149,11 +146,11 @@ const ProductList = () => {
 
                 {/* Ordenar */}
                 <div>
-                  <label className="block text-stone-700 font-semibold mb-1">Ordenar por</label>
+                  <label className="block text-stone-700 dark:text-gray-300 font-semibold mb-1">Ordenar por</label>
                   <select
                     value={sort}
                     onChange={e => setSort(e.target.value)}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    className="w-full px-3 py-2 border border-stone-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-gray-200"
                   >
                     <option value="default">Por defecto</option>
                     <option value="price-asc">Precio: menor a mayor</option>
@@ -164,7 +161,7 @@ const ProductList = () => {
 
                 {/* Precio */}
                 <div>
-                  <label className="block text-stone-700 font-semibold mb-1">Rango de precio</label>
+                  <label className="block text-stone-700 dark:text-gray-300 font-semibold mb-1">Rango de precio</label>
                   <input
                     type="range"
                     min="0"
@@ -174,7 +171,7 @@ const ProductList = () => {
                     onChange={e => setPriceRange([0, Number(e.target.value)])}
                     className="w-full accent-amber-500 cursor-pointer"
                   />
-                  <p className="text-sm text-stone-600 mt-1">Hasta ${priceRange[1].toFixed(2)}</p>
+                  <p className="text-sm text-stone-600 dark:text-gray-300 mt-1">Hasta ${priceRange[1].toFixed(2)}</p>
                 </div>
               </>
             )}
@@ -184,7 +181,7 @@ const ProductList = () => {
           <div className="flex-1">
             <AnimatePresence mode="wait">
               <motion.div
-                key={currentPage} // <--- clave depende de la página
+                key={currentPage}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -196,7 +193,7 @@ const ProductList = () => {
                     <ProductCard key={product.id} product={product} index={index} />
                   ))
                 ) : (
-                  <p className="text-center text-stone-600 text-lg col-span-full">
+                  <p className="text-center text-stone-600 dark:text-gray-300 text-lg col-span-full">
                     No se encontraron productos que coincidan con los filtros seleccionados.
                   </p>
                 )}
@@ -208,7 +205,7 @@ const ProductList = () => {
               <div className="flex justify-center items-center gap-2 mb-12 flex-wrap">
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
-                  className="p-2 rounded-full hover:bg-amber-200 transition"
+                  className="p-2 rounded-full hover:bg-amber-200 dark:hover:bg-gray-700 transition"
                   disabled={currentPage === 1}
                 >
                   <ArrowLeft size={20} />
@@ -218,11 +215,11 @@ const ProductList = () => {
                   <button
                     key={page}
                     onClick={() => handlePageChange(page)}
-                    className={`px-4 py-2 rounded-full border ${
+                    className={`px-4 py-2 rounded-full border transition-all ${
                       currentPage === page
-                        ? 'bg-amber-400 text-gray-900 border-amber-400'
-                        : 'bg-white text-stone-800 border-stone-300 hover:bg-amber-200'
-                    } transition-all`}
+                        ? 'bg-amber-400 text-gray-900 border-amber-400 dark:bg-amber-600 dark:text-gray-900 dark:border-amber-600'
+                        : 'bg-white text-stone-800 border-stone-300 hover:bg-amber-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-amber-500'
+                    }`}
                   >
                     {page}
                   </button>
@@ -230,7 +227,7 @@ const ProductList = () => {
 
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
-                  className="p-2 rounded-full hover:bg-amber-200 transition"
+                  className="p-2 rounded-full hover:bg-amber-200 dark:hover:bg-gray-700 transition"
                   disabled={currentPage === totalPages}
                 >
                   <ArrowRight size={20} />
@@ -240,7 +237,7 @@ const ProductList = () => {
 
             {/* Botón final */}
             <div className="text-center">
-              <button className="group bg-gradient-to-r from-amber-400 to-amber-300 text-gray-900 px-12 py-5 rounded-full font-bold text-lg hover:from-amber-500 hover:to-amber-400 hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
+              <button className="group bg-gradient-to-r from-amber-400 to-amber-300 dark:from-amber-600 dark:to-amber-500 text-gray-900 dark:text-gray-900 px-12 py-5 rounded-full font-bold text-lg hover:from-amber-500 hover:to-amber-400 dark:hover:from-amber-700 dark:hover:to-amber-600 hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
                 Ver Todos los Productos
                 <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" size={24} />
               </button>
@@ -251,25 +248,25 @@ const ProductList = () => {
         {/* Panel filtros móviles */}
         <div className={`fixed inset-0 bg-black/40 z-50 flex justify-end transition-opacity duration-300 ${isFilterOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <aside
-            className={`bg-white w-72 h-full p-6 shadow-lg overflow-y-auto relative transform transition-transform duration-300 ease-in-out
+            className={`w-72 h-full p-6 shadow-lg overflow-y-auto relative transform transition-transform duration-300 ease-in-out bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200
               ${isFilterOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
             <button
               onClick={() => setIsFilterOpen(false)}
-              className="absolute top-4 right-4 text-stone-700 hover:text-amber-500 transition-colors"
+              className="absolute top-4 right-4 text-stone-700 dark:text-gray-300 hover:text-amber-500 dark:hover:text-amber-400 transition-colors"
             >
               <X size={28} />
             </button>
-            <h3 className="text-lg font-bold text-stone-800 mb-4">Filtros</h3>
+            <h3 className="text-lg font-bold mb-4">Filtros</h3>
 
             <div className="space-y-4">
               {/* Colección */}
               <div>
-                <label className="block text-stone-700 font-semibold mb-1">Colección</label>
+                <label className="block font-semibold mb-1">Colección</label>
                 <select
                   value={collection}
                   onChange={e => { setCollection(e.target.value); setCurrentPage(1); }}
-                  className="w-full px-3 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 border border-stone-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-gray-200"
                 >
                   {collections.map(col => (
                     <option key={col} value={col}>{col.replace('-', ' ').toUpperCase()}</option>
@@ -279,11 +276,11 @@ const ProductList = () => {
 
               {/* Categoría */}
               <div>
-                <label className="block text-stone-700 font-semibold mb-1">Categoría</label>
+                <label className="block font-semibold mb-1">Categoría</label>
                 <select
                   value={category}
                   onChange={e => { setCategory(e.target.value); setCurrentPage(1); }}
-                  className="w-full px-3 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 border border-stone-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-gray-200"
                 >
                   {categories.map(cat => (
                     <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
@@ -293,11 +290,11 @@ const ProductList = () => {
 
               {/* Género */}
               <div>
-                <label className="block text-stone-700 font-semibold mb-1">Género</label>
+                <label className="block font-semibold mb-1">Género</label>
                 <select
                   value={gender}
                   onChange={e => { setGender(e.target.value); setCurrentPage(1); }}
-                  className="w-full px-3 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 border border-stone-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-gray-200"
                 >
                   <option value="all">Todos</option>
                   <option value="men">Hombre</option>
@@ -307,11 +304,11 @@ const ProductList = () => {
 
               {/* Ordenar */}
               <div>
-                <label className="block text-stone-700 font-semibold mb-1">Ordenar por</label>
+                <label className="block font-semibold mb-1">Ordenar por</label>
                 <select
                   value={sort}
                   onChange={e => setSort(e.target.value)}
-                  className="w-full px-3 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 border border-stone-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-gray-200"
                 >
                   <option value="default">Por defecto</option>
                   <option value="price-asc">Precio: menor a mayor</option>
@@ -322,7 +319,7 @@ const ProductList = () => {
 
               {/* Precio */}
               <div>
-                <label className="block text-stone-700 font-semibold mb-1">Rango de precio</label>
+                <label className="block font-semibold mb-1">Rango de precio</label>
                 <input
                   type="range"
                   min="0"
@@ -332,7 +329,7 @@ const ProductList = () => {
                   onChange={e => setPriceRange([0, Number(e.target.value)])}
                   className="w-full accent-amber-500 cursor-pointer"
                 />
-                <p className="text-sm text-stone-600 mt-1">Hasta ${priceRange[1].toFixed(2)}</p>
+                <p className="text-sm mt-1">Hasta ${priceRange[1].toFixed(2)}</p>
               </div>
             </div>
           </aside>

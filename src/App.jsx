@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Novedades from './components/Novedades';
@@ -11,27 +11,37 @@ const Home = ({ scrollToProducts }) => (
   <>
     <Hero scrollToProducts={scrollToProducts} />
     <Novedades />
-    <ProductList />
-    <Contact />
+    <div id="productos">
+      <ProductList />
+    </div>
+    <Contact /> {/* 👈 Se agregó aquí */}
   </>
-);
-
-const ContactPage = () => (
-  <div className="pt-20">
-    <Contact />
-  </div>
 );
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
+  const preventAutoScroll = useRef(false);
+
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual';
+  }, []);
 
   const scrollToProducts = () => {
     const element = document.getElementById('productos');
     if (element) {
+      preventAutoScroll.current = true; // evitar scroll al re-render
       element.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        preventAutoScroll.current = false;
+      }, 800);
     }
-    setCurrentPage('home');
   };
+
+  // Evita scroll involuntario al re-render del tema
+  useEffect(() => {
+    if (preventAutoScroll.current) return;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [currentPage]);
 
   return (
     <ThemeProvider>
@@ -43,7 +53,6 @@ const App = () => {
         />
         <main className="flex-grow">
           {currentPage === 'home' && <Home scrollToProducts={scrollToProducts} />}
-          {currentPage === 'contact' && <ContactPage />}
         </main>
         <Footer />
       </div>
